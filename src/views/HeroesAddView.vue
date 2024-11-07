@@ -9,6 +9,15 @@ const router = useRouter();
 
 const name: Ref<string> = ref('');
 
+const saveHero = async () => {
+    try {
+        await addHero(name.value);
+        router.go(-1)
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 </script>
 
 <template>
@@ -16,7 +25,7 @@ const name: Ref<string> = ref('');
         <div>Name: <input v-model="name" /></div>
         <div class="buttons">
             <StyledButton @click="router.go(-1)">Back</StyledButton>
-            <StyledButton @click="addHero(name); router.go(-1)" :type="'primary'">Save</StyledButton>
+            <StyledButton @click="saveHero()" :type="'primary'">Save</StyledButton>
         </div>
     </div>
 </template>

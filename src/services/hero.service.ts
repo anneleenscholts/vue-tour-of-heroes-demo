@@ -33,11 +33,16 @@ const useHeroes = () => {
         saveHeroes();
     }
 
-    const addHero = (name: string) => {
-        const maxNumber = Math.max(...heroes.value.map(h => h.number));
-        const newHero: Hero = { number: maxNumber + 1, name };
-        heroes.value.push(newHero);
-        saveHeroes();
+    const addHero = async (name: string) => {
+        try {
+            return await axios.post("https://code-coaching.dev/api/heroes", { name: name }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+        } catch (error) {
+            throw new Error('something went wrong');
+        }
     }
 
     const saveHeroes = () => {
