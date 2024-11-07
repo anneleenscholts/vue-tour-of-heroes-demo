@@ -26,6 +26,11 @@ const router = createRouter({
           "path": "/heroes/add",
           "name": "hero-add",
           component: () => import('@/views/HeroesAddView.vue')
+        },
+        {
+          "path": "login",
+          "name": "login",
+          component: () => import('@/views/LoginView.vue')
         }
       ]
     }
