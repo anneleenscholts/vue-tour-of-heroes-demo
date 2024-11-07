@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import StyledButton from '@/components/StyledButton.vue';
+import router from '@/router';
 import { useAuth } from '@/services/auth.service';
 import { ref, type Ref } from 'vue';
 
@@ -13,6 +14,7 @@ const authenticate = async () => {
         await login(email.value, password.value);
         email.value = "";
         password.value = "";
+        router.go(-1);
     } catch (error) {
         console.error(error);
     }

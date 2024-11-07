@@ -11,7 +11,7 @@ const { isAuthenticated, logout } = useAuth();
 
 <template>
     <div>
-        <StyledButton @click="logout()" v-if="isAuthenticated">Logout</StyledButton>
+        <StyledButton @click="logout(); router.push({name: 'login'})" v-if="isAuthenticated">Logout</StyledButton>
         <StyledButton @click="router.push({ name: 'login' })" v-else>Login</StyledButton>
     </div>
     <div class="layout-container">

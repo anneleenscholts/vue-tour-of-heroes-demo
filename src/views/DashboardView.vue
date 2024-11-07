@@ -1,8 +1,14 @@
 <script lang="ts" setup>
-import router from '@/router';
 import { useHeroes } from '@/services/hero.service';
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
-const { topHeroes } = useHeroes();
+const { topHeroes, loadHeroes } = useHeroes();
+const router = useRouter();
+
+onMounted(() => {
+    loadHeroes();
+});
 
 </script>
 

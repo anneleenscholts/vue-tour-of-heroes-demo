@@ -3,8 +3,9 @@ import StyledButton from "@/components/StyledButton.vue"
 import { useRouter } from "vue-router";
 import type { Hero } from "@/components/models";
 import { useHeroes } from "@/services/hero.service";
+import { onMounted } from "vue";
 
-const { heroes, selectedHero } = useHeroes();
+const { heroes, selectedHero, loadHeroes } = useHeroes();
 
 const router = useRouter();
 
@@ -15,6 +16,11 @@ function setSelectedHero(hero: Hero) {
 const upperCase = (text: string): string => {
     return text.toUpperCase()
 }
+
+onMounted(() => {
+    loadHeroes();
+})
+
 </script>
 
 <template>
