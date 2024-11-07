@@ -1,3 +1,4 @@
+import { authenticationGuard } from '@/guards/authentication.guard'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
@@ -10,21 +11,25 @@ const router = createRouter({
         {
           path: "/dashboard",
           name: "dashboard",
+          beforeEnter: [authenticationGuard],
           component: () => import('@/views/DashboardView.vue')
         },
         {
           path: "/heroes",
           name: "heroes",
+          beforeEnter: [authenticationGuard],
           component: () => import('@/views/HeroesView.vue')
         },
         {
           "path": "/heroes/:id",
           "name": "hero-details",
+          beforeEnter: [authenticationGuard],
           component: () => import('@/views/HeroDetailsView.vue')
         },
         {
           "path": "/heroes/add",
           "name": "hero-add",
+          beforeEnter: [authenticationGuard],
           component: () => import('@/views/HeroesAddView.vue')
         },
         {
