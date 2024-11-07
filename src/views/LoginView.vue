@@ -8,6 +8,16 @@ const password: Ref<string> = ref("");
 
 const { login } = useAuth();
 
+const authenticate = async () => {
+    try {
+        await login(email.value, password.value);
+        email.value = "";
+        password.value = "";
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 </script>
 
 <template>
@@ -16,7 +26,7 @@ const { login } = useAuth();
             <div>Email: <input type="email" v-model="email" /></div>
             <div>Paswoord: <input type="password" v-model="password" /></div>
         </div>
-        <StyledButton class="login-button" @click="login(email, password)">Login</StyledButton>
+        <StyledButton class="login-button" @click="authenticate()">Login</StyledButton>
     </div>
 </template>
 
