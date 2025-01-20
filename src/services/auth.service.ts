@@ -6,7 +6,7 @@ const isAuthenticated = ref(localStorage.getItem("token") !== null);
 const useAuth = () => {
     const login = async (email: string, password: string) => {
         try {
-            const response = await axios.post<{ token: string }>("https://code-coaching.dev/api/token/login", {
+            const response = await axios.post<{ token: string }>("/api/auth/login", {
                 email: email,
                 password: password
             });
