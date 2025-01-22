@@ -4,16 +4,18 @@ const { label, inputType = "text" } = defineProps<{
   inputType?: string
 }>();
 
+const modelValue = defineModel<string>();
+
 const handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
-  console.log('Input value:', target.value);
+  modelValue.value = target.value;
 };
 </script>
 
 <template>
   <div>
     <label>{{ label }}</label>
-    <input :type="inputType" @input="handleInput" />
+    <input :type="inputType" @input="handleInput" :value="modelValue" />
   </div>
 </template>
 
